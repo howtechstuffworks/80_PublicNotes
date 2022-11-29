@@ -1,0 +1,44 @@
+-------------------------------------------------------------------------------------------------------------------
+Install Neovim 0.8 or above
+-------------------------------------------------------------------------------------------------------------------
+bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+-------------------------------------------------------------------------------------------------------------------
+~/.local/bin/lvim
+-------------------------------------------------------------------------------------------------------------------
+config.lua:
+-----------
+lvim.colorscheme = "gruvbox"
+
+vim.opt.list = true
+vim.opt.listchars:append("space:.")
+vim.opt.listchars:append("eol:.")
+vim.opt.colorcolumn = "101"
+vim.opt.colorcolumn.ctermbg = "magenta"
+vim.opt.hlsearch = true
+
+lvim.plugins = {
+	{ "ellisonleao/gruvbox.nvim" },
+}
+
+-- this stops the autocomplete
+lvim.builtin.cmp.completion.keyword_length = 1000
+
+-- This Stops cwd from moving.
+local nvimtree = lvim.builtin.nvimtree
+nvimtree.setup.update_focused_file.update_cwd = false
+
+local project = lvim.builtin.project
+project.manual_mode = true
+
+components.lua
+---------------
+under diff {}
+	-	vim.cmd("set nolist")
+-------------------------------------------------------------------------------------------------------------------
+READ_LATER:
+https://stackoverflow.com/questions/24510721/cscope-result-handling-with-quickfix-window
+-------------------------------------------------------------------------------------------------------------------
+:lua vim.lsp.stop_client(vim.lsp.get_active_clients())
+:edit
+-------------------------------------------------------------------------------------------------------------------
+
